@@ -6,7 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>테스트 게시판</title>
-<link rel="stylesheet" href="/team6truts/css/css.css" type="text/css">
+<link rel="stylesheet" href="/team6-struts/css/css.css" type="text/css">
 </head>
 
 <body>
@@ -45,7 +45,8 @@
 
 			<tr bgcolor="#FFFFFF" align="center">
 				<td><s:property value="no" /></td>
-				<td align="left">&nbsp;<s:a href="%{viewURL}">
+				<td align="left">
+					&nbsp;<s:a href="%{viewURL}">
 						<s:property value="subject" />
 					</s:a></td>
 				<td align="center"><s:property value="name" /></td>
@@ -75,10 +76,8 @@
 
 		<tr align="right">
 			<td colspan="5"><input type="button" value="글쓰기" class="inputb"
-				onClick="javascript:location.href='createTestForm.action?currentPage=<s:property value="currentPage" />';">
-			</td>
+				onClick="javascript:location.href='createTestForm.action?currentPage=<s:property value="currentPage" />';"></td>
 		</tr>
 	</table>
 </body>
 </html>
-

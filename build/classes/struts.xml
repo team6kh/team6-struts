@@ -25,6 +25,15 @@
 			<result>/board/test/readTest.jsp</result>
 		</action>
 		
+		<!-- 비밀번호 체크 액션. -->
+		<action name="checkForm" class="board.test.ReadTestAction" method="checkForm">
+			<result>/board/test/checkPassword.jsp</result>
+		</action>
+		
+		<action name="checkAction" class="board.test.ReadTestAction" method="checkAction">
+			<result name="error">/board/test/checkError.jsp</result>
+			<result>/board/test/checkSuccess.jsp</result>
+		</action>
 		
 		<!-- 테스트 게시판 수정 액션. -->
 		<action name="updateTestForm" class="board.test.ReadTestAction">

@@ -2,8 +2,8 @@ package board;
 
 public class PagingAction {
 
-	private String actionName = ""; // 액션 이름
-	private int currentPage;   // 현재페이지
+	private String urlName = "";	// URL 변수
+	private int currentPage; // 현재페이지
 	private int totalCount;	 // 전체 게시물 수
 	private int totalPage;	 // 전체 페이지 수
 	private int blockCount;	 // 한 페이지의  게시물의 수
@@ -16,10 +16,10 @@ public class PagingAction {
 	private StringBuffer pagingHtml;
 
 	// 페이징 생성자
-	public PagingAction(String actionName, int currentPage, int totalCount, int blockCount,
+	public PagingAction(String urlName, int currentPage, int totalCount, int blockCount,
 			int blockPage) {
 
-		this.setActionName(actionName);
+		this.urlName = urlName;
 		this.blockCount = blockCount;
 		this.blockPage = blockPage;
 		this.currentPage = currentPage;
@@ -52,7 +52,7 @@ public class PagingAction {
 		// 이전 block 페이지
 		pagingHtml = new StringBuffer();
 		if (currentPage > blockPage) {
-			pagingHtml.append("<a href="+actionName+".action?currentPage="
+			pagingHtml.append("<a href="+urlName+".action?currentPage="
 					+ (startPage - 1) + ">");
 			pagingHtml.append("이전");
 			pagingHtml.append("</a>");
@@ -60,7 +60,7 @@ public class PagingAction {
 
 		pagingHtml.append("&nbsp;|&nbsp;");
 
-		//페이지 번호.현재 페이지는 빨간색으로 강조하고 링크를 제거.
+		// 페이지 번호.현재 페이지는 빨간색으로 강조하고 링크를 제거.
 		for (int i = startPage; i <= endPage; i++) {
 			if (i > totalPage) {
 				break;
@@ -71,9 +71,9 @@ public class PagingAction {
 				pagingHtml.append("</font></b>");
 			} else {
 				pagingHtml
-						.append("&nbsp;<a href="+actionName+".action?currentPage=");
+						.append("&nbsp;<a href="+urlName+".action?currentPage=");
 				pagingHtml.append(i);
-				pagingHtml.append("'>");
+				pagingHtml.append(">");
 				pagingHtml.append(i);
 				pagingHtml.append("</a>");
 			}
@@ -85,19 +85,19 @@ public class PagingAction {
 
 		// 다음 block 페이지
 		if (totalPage - startPage >= blockPage) {
-			pagingHtml.append("<a href="+actionName+".action?currentPage="
+			pagingHtml.append("<a href="+urlName+".action?currentPage="
 					+ (endPage + 1) + ">");
 			pagingHtml.append("다음");
 			pagingHtml.append("</a>");
 		}
 	}
 	
-	public String getActionName() {
-		return actionName;
+	public String getUrlName() {
+		return urlName;
 	}
 
-	public void setActionName(String actionName) {
-		this.actionName = actionName;
+	public void setUrlName(String urlName) {
+		this.urlName = urlName;
 	}
 
 	public int getCurrentPage() {
