@@ -1,0 +1,44 @@
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="team6truts" extends="struts-default">	
+		<!-- 테스트 게시판 리스트 액션. -->
+		<action name="listTestAction" class="board.test.ListTestAction">
+			<result>/board/test/listTest.jsp</result>
+		</action>
+		
+		<!-- 테스트 게시판 쓰기 액션. -->
+		<action name="createTestForm" class="board.test.CreateTestAction" method="form">
+			<result>/board/test/createTest.jsp</result>
+		</action>
+		
+		<action name="createTestAction" class="board.test.CreateTestAction">
+			<result type="redirect-action">
+				<param name="actionName">listTestAction</param>
+			</result>
+		</action>
+		
+		<!-- 테스트 게시판 읽기 액션. -->
+		<action name="readTestAction" class="board.test.ReadTestAction">
+			<result>/board/test/readTest.jsp</result>
+		</action>
+		
+		
+		<!-- 테스트 게시판 수정 액션. -->
+		<action name="updateTestForm" class="board.test.ReadTestAction">
+			<result type="chain">createTestForm</result>
+		</action>
+		
+		<action name="updateTestAction" class="board.test.UpdateTestAction">
+			<result type="chain">readTestAction</result>
+		</action>		
+
+		<!--테스트 게시판 삭제 액션. -->
+		<action name="deleteTestAction" class="board.test.DeleteTestAction">
+			<result type="chain">listTestAction</result>
+		</action>	
+	</package>
+</struts>
+
