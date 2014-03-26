@@ -104,7 +104,7 @@
 
 		<tr>
 			<td align="right" colspan="2">
-				<s:url id="modifyURL" action="updateTestForm">
+				<s:url id="updateURL" action="updateTestForm">
 					<s:param name="no">
 						<s:property value="no" />
 					</s:param>
@@ -117,7 +117,7 @@
 				</s:url>
 				
 				<input name="list" type="button" value="수정" class="inputb"
-				 onClick="javascript:open_win_noresizable('checkForm.action?no=<s:property value="resultClass.no" />&currentPage=<s:property value="currentPage" />','modify')">
+				 onClick="javascript:open_win_noresizable('checkForm.action?no=<s:property value="resultClass.no" />&currentPage=<s:property value="currentPage" />','update')">
 
 				<input name="list" type="button" value="삭제" class="inputb"
 				 onClick="javascript:open_win_noresizable('checkForm.action?no=<s:property value="resultClass.no" />&currentPage=<s:property value="currentPage" />','delete')">

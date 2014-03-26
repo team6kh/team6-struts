@@ -10,7 +10,7 @@
 	<script type="text/javascript">
 		function locationURL() {
 		
-		if ( window.name == 'modify' ) 
+		if ( window.name == 'update' ) 
 			window.opener.parent.location.href='updateTestForm.action?no=<s:property value="no" />&currentPage=<s:property value="currentPage" />';
 				
 		else if ( window.name == 'delete' ) 
