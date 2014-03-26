@@ -9,8 +9,6 @@ public class TestDTO {
 	private String name;
 	private String password;
 	private String content;
-	private String file_orgname;
-	private String file_savname;
 	private int readhit;
 	private Date regdate;
 
@@ -68,22 +66,6 @@ public class TestDTO {
 
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
-	}
-
-	public String getFile_orgname() {
-		return file_orgname;
-	}
-
-	public void setFile_orgname(String file_orgname) {
-		this.file_orgname = file_orgname;
-	}
-
-	public String getFile_savname() {
-		return file_savname;
-	}
-
-	public void setFile_savname(String file_savname) {
-		this.file_savname = file_savname;
 	}
 
 }

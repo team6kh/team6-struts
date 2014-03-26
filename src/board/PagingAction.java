@@ -2,6 +2,7 @@ package board;
 
 public class PagingAction {
 
+	private String actionName = ""; // 액션 이름
 	private int currentPage;   // 현재페이지
 	private int totalCount;	 // 전체 게시물 수
 	private int totalPage;	 // 전체 페이지 수
@@ -15,9 +16,10 @@ public class PagingAction {
 	private StringBuffer pagingHtml;
 
 	// 페이징 생성자
-	public PagingAction(int currentPage, int totalCount, int blockCount,
+	public PagingAction(String actionName, int currentPage, int totalCount, int blockCount,
 			int blockPage) {
 
+		this.setActionName(actionName);
 		this.blockCount = blockCount;
 		this.blockPage = blockPage;
 		this.currentPage = currentPage;
@@ -50,7 +52,7 @@ public class PagingAction {
 		// 이전 block 페이지
 		pagingHtml = new StringBuffer();
 		if (currentPage > blockPage) {
-			pagingHtml.append("<a href=listAction.action?currentPage="
+			pagingHtml.append("<a href="+actionName+".action?currentPage="
 					+ (startPage - 1) + ">");
 			pagingHtml.append("이전");
 			pagingHtml.append("</a>");
@@ -69,7 +71,7 @@ public class PagingAction {
 				pagingHtml.append("</font></b>");
 			} else {
 				pagingHtml
-						.append("&nbsp;<a href='listAction.action?currentPage=");
+						.append("&nbsp;<a href="+actionName+".action?currentPage=");
 				pagingHtml.append(i);
 				pagingHtml.append("'>");
 				pagingHtml.append(i);
@@ -83,16 +85,24 @@ public class PagingAction {
 
 		// 다음 block 페이지
 		if (totalPage - startPage >= blockPage) {
-			pagingHtml.append("<a href=listAction.action?currentPage="
+			pagingHtml.append("<a href="+actionName+".action?currentPage="
 					+ (endPage + 1) + ">");
 			pagingHtml.append("다음");
 			pagingHtml.append("</a>");
 		}
 	}
+	
+	public String getActionName() {
+		return actionName;
+	}
+
+	public void setActionName(String actionName) {
+		this.actionName = actionName;
+	}
 
 	public int getCurrentPage() {
 		return currentPage;
-	}
+	}	
 
 	public void setCurrentPage(int currentPage) {
 		this.currentPage = currentPage;

@@ -18,6 +18,7 @@ public class ListTestAction extends ActionSupport {
 
 	private List<TestDTO> list = new ArrayList<TestDTO>();	 
 	
+	private String actionName = "ListTestAction"; // 액션 이름
 	private int currentPage = 1; //현재 페이지
 	private int totalCount; // 총 게시물의 수
 	private int blockCount = 10; // 한 페이지의  게시물의 수
@@ -39,7 +40,7 @@ public class ListTestAction extends ActionSupport {
 		list = sqlMapper.queryForList("selectAll");
 
 		totalCount = list.size(); // 전체 글 갯수를 구한다.
-		page = new PagingAction(currentPage, totalCount, blockCount, blockPage); // pagingAction 객체 생성.
+		page = new PagingAction(actionName, currentPage, totalCount, blockCount, blockPage); // pagingAction 객체 생성.
 		pagingHtml = page.getPagingHtml().toString(); // 페이지 HTML 생성.
 
 		// 현재 페이지에서 보여줄 마지막 글의 번호 설정.

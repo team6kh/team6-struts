@@ -11,8 +11,6 @@
 		<result property="name" column="name" />
 		<result property="password" column="password" />
 		<result property="content" column="content" />
-		<result property="file_orgname" column="file_orgName" />
-		<result property="file_savname" column="file_savName" />
 		<result property="readhit" column="readhit" />
 		<result property="regdate" column="regdate" />
 	</resultMap>
@@ -73,12 +71,6 @@
 								NAME = #name#,
 								PASSWORD = #password#,
 								CONTENT = #content#
-								<include refid="where-no" />
-	</update>
-
-	<update id="updateFile" parameterClass="TestDTO">
-		UPDATE TEST_BOARD SET FILE_ORGNAME = #file_orgname#,
-								FILE_SAVNAME = #file_savname#
 								<include refid="where-no" />
 	</update>
 
