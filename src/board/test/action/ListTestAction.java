@@ -1,17 +1,21 @@
-package board.test;
+package board.test.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient; 
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
  
+
+
+
+
 import java.util.*;
 import java.io.Reader;
 import java.io.IOException;
 
-import board.PagingAction;
+import board.test.dto.TestDTO;
 
-public class ListTestAction extends ActionSupport {
+public class ListTestAction extends ActionSupport implements ConDAOAware {
 	
 	public static Reader reader; // 파일 스트림을 위한 reader.
 	public static SqlMapClient sqlMapper; // SqlMapClient API를 사용하기 위한 sqlMapper 객체.
@@ -26,15 +30,16 @@ public class ListTestAction extends ActionSupport {
 	private String pagingHtml; // 페이징을 구현한 HTML
 	private PagingAction page; // 페이징 클래스
 	
-	// 생성자
-	public ListTestAction() throws IOException {		
-		reader = Resources.getResourceAsReader("sqlMapConfig.xml"); // sqlMapConfig.xml 파일의 설정내용을 가져온다.
-		sqlMapper = SqlMapClientBuilder.buildSqlMapClient(reader); // sqlMapConfig.xml의 내용을 적용한 sqlMapper 객체 생성.
-		reader.close();
+	private ConDAO conDao;
+	
+	public void setConDAO(ConDAO conDao){
+		this.conDao = conDao;
 	}
 
 	// 게시판 LIST 액션
 	public String execute() throws Exception {
+		
+		sqlMapper = conDao.getCon();
 
 		// 모든 글을 가져와 list에 넣는다.
 		list = sqlMapper.queryForList("selectAll");

@@ -1,4 +1,4 @@
-package board.test;
+package board.test.dto;
 
 import java.util.Date;
 

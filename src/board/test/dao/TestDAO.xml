@@ -2,7 +2,7 @@
 <!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
 <sqlMap>
 
-	<typeAlias alias="TestDTO" type="board.test.TestDTO" />
+	<typeAlias alias="TestDTO" type="board.test.dto.TestDTO" />
 
 	<!-- 리절트 맵 정의 -->
 	<resultMap id="TestResult" class="TestDTO">

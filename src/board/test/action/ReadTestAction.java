@@ -1,4 +1,6 @@
-package board.test;
+package board.test.action;
+
+import board.test.dto.TestDTO;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.ibatis.common.resources.Resources;
@@ -9,7 +11,7 @@ import java.io.Reader;
 import java.io.InputStream;
 import java.io.IOException;
 
-public class ReadTestAction extends ActionSupport {
+public class ReadTestAction extends ActionSupport implements ConDAOAware {
 	public static Reader reader;
 	public static SqlMapClient sqlMapper;
 
@@ -25,16 +27,16 @@ public class ReadTestAction extends ActionSupport {
 	private String contentDisposition;
 	private long contentLength;
 
-	// 생성자
-	public ReadTestAction() throws IOException {
-
-		reader = Resources.getResourceAsReader("sqlMapConfig.xml"); // sqlMapConfig.xml 파일의 설정내용을 가져온다.
-		sqlMapper = SqlMapClientBuilder.buildSqlMapClient(reader); // sqlMapConfig.xml의 내용을 적용한 sqlMapper 객체 생성.
-		reader.close();
+	private ConDAO conDao;
+	
+	public void setConDAO(ConDAO conDao){
+		this.conDao = conDao;
 	}
 
 	// 상세보기
 	public String execute() throws Exception {
+		
+		sqlMapper = conDao.getCon();
 
 		// 해당 글의 조회수 +1.
 		paramClass.setNo(getNo());

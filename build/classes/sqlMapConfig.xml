@@ -20,6 +20,6 @@
 		</dataSource>
 	</transactionManager>
 	
-	<sqlMap resource="/board/test/ibatis/TestSQL.xml"/>
+	<sqlMap resource="/board/test/dao/TestDAO.xml"/>
 	
 </sqlMapConfig>

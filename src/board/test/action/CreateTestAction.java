@@ -1,4 +1,6 @@
-package board.test;
+package board.test.action;
+
+import board.test.dto.TestDTO;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.ibatis.common.resources.Resources;
@@ -9,7 +11,7 @@ import java.util.*;
 import java.io.Reader;
 import java.io.IOException;
 
-public class CreateTestAction extends ActionSupport {
+public class CreateTestAction extends ActionSupport implements ConDAOAware {
 
 	public static Reader reader; // 파일 스트림을 위한 reader.
 	public static SqlMapClient sqlMapper; // SqlMapClient API를 사용하기 위한 sqlMapper 객체.
@@ -25,13 +27,11 @@ public class CreateTestAction extends ActionSupport {
 	private String password;
 	private String content;
 	Calendar today = Calendar.getInstance(); // 오늘 날짜 구하기.
-
-	// 생성자
-	public CreateTestAction() throws IOException {
-
-		reader = Resources.getResourceAsReader("sqlMapConfig.xml"); // sqlMapConfig.xml 파일의 설정내용을 가져온다.
-		sqlMapper = SqlMapClientBuilder.buildSqlMapClient(reader); // sqlMapConfig.xml의 내용을 적용한 sqlMapper 객체 생성.
-		reader.close();
+	
+	private ConDAO conDao;
+	
+	public void setConDAO(ConDAO conDao){
+		this.conDao = conDao;
 	}
 
 	public String form() throws Exception {
@@ -41,6 +41,8 @@ public class CreateTestAction extends ActionSupport {
 
 	// 게시판 WRITE 액션
 	public String execute() throws Exception {
+		
+		sqlMapper = conDao.getCon();
 
 		//파라미터와 리절트 객체 생성.
 		paramClass = new TestDTO();
@@ -130,4 +132,5 @@ public class CreateTestAction extends ActionSupport {
 	public void setCurrentPage(int currentPage) {
 		this.currentPage = currentPage;
 	}
+	
 }

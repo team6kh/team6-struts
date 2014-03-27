@@ -1,4 +1,6 @@
-package board.test;
+package board.test.action;
+
+import board.test.dto.TestDTO;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.ibatis.common.resources.Resources;
@@ -9,7 +11,7 @@ import java.io.File;
 import java.io.Reader;
 import java.io.IOException;
 
-public class DeleteTestAction extends ActionSupport {
+public class DeleteTestAction extends ActionSupport implements ConDAOAware {
 	public static Reader reader;
 	public static SqlMapClient sqlMapper;
 
@@ -20,19 +22,18 @@ public class DeleteTestAction extends ActionSupport {
 	
 	private int no;
 	
+	private ConDAO conDao;
 	
-	// 생성자
-	public DeleteTestAction() throws IOException {
-		
-		reader = Resources.getResourceAsReader("sqlMapConfig.xml"); // sqlMapConfig.xml 파일의 설정내용을 가져온다.
-		sqlMapper = SqlMapClientBuilder.buildSqlMapClient(reader); // sqlMapConfig.xml의 내용을 적용한 sqlMapper 객체 생성.
-		reader.close();
+	public void setConDAO(ConDAO conDao){
+		this.conDao = conDao;
 	}
 
 	// 게시글 글 삭제
 	public String execute() throws Exception {
 		
-		//파라미터와 리절트 객체 생성.
+		sqlMapper = conDao.getCon();
+		
+		// 파라미터와 리절트 객체 생성.
 		paramClass = new TestDTO();
 		resultClass = new TestDTO();
 		
