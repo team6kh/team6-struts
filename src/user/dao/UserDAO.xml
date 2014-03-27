@@ -14,7 +14,7 @@
 	</resultMap>
 
 	<!-- 공통으로 사용할 select 절 정의 -->
-	<sql id="select-all">
+	<sql id="select-all-user">
 		SELECT * FROM TEST_USER_TABLE
 	</sql>
 	
@@ -24,24 +24,24 @@
 	</sql>
 
 	<!-- select 쿼리문 정의 -->
-	<select id="selectAll" resultMap="UserResult" parameterClass="UserDTO">
-		<include refid="select-all" />
+	<select id="selectAllUser" resultMap="UserResult" parameterClass="UserDTO">
+		<include refid="select-all-user" />
 		ORDER BY user_name DESC
 	</select>
 	
-	<select id="selectOne" resultMap="TestResult" parameterClass="UserDTO">
-		<include refid="select-all" />
+	<select id="selectOneUser" resultMap="TestResult" parameterClass="UserDTO">
+		<include refid="select-all-user" />
 		<include refid="where-user_id" />
 	</select>
 
-	<select id="selectPassword" resultMap="UserResult">
-		<include refid="select-all" />
+	<select id="selectPasswordUser" resultMap="UserResult">
+		<include refid="select-all-user" />
 		<include refid="where-user_id" />
 		AND password = #password#
 	</select>
 
 	<!-- insert 쿼리문 정의 -->
-	<insert id="insertBoard" parameterClass="UserDTO">
+	<insert id="insertBoardUser" parameterClass="UserDTO">
 		INSERT INTO TEST_USER_TABLE (user_id,
 									password,
 									user_name,
@@ -57,7 +57,7 @@
 	</insert>
 
 	<!-- update 쿼리문 정의 -->
-	<update id="updateBoard" parameterClass="UserDTO">
+	<update id="updateBoardUser" parameterClass="UserDTO">
 		UPDATE TEST_USER_TABLE SET password = #password#,
 									user_name = #userName#,
 									user_level = #userLevel#
@@ -65,7 +65,7 @@
 	</update>
 
 	<!-- delete 쿼리문 정의 -->
-	<delete id="deleteBoard" parameterClass="UserDTO">
+	<delete id="deleteBoardUser" parameterClass="UserDTO">
 		DELETE FROM TEST_USER_TABLE
 		<include refid="where-user_id" />
 	</delete>

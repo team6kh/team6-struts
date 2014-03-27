@@ -6,7 +6,18 @@
 	<package name="team6-struts" extends="struts-default">
 		<interceptors>
 			<interceptor name="conDao" class="board.test.action.ConDAOInterceptor"/>
-		</interceptors>	
+		</interceptors>		
+		<action name="loginForm" class="login.action.LoginAction" method="loginForm">
+			<result>/login/loginForm.jsp</result>
+		</action>	
+		<action name="loginAction" class="login.action.LoginAction">			
+			<interceptor-ref name="conDao" />
+			<interceptor-ref name="prepare" />
+			<interceptor-ref name="modelDriven" />
+			<interceptor-ref name="params" />
+			<result name="error">/login/loginError.jsp</result>
+			<result>/login/loginSuccess.jsp</result>
+		</action>
 		<!-- 테스트 게시판 리스트 액션. -->
 		<action name="listTestAction" class="board.test.action.ListTestAction">
 			<interceptor-ref name="params"/>
@@ -53,7 +64,7 @@
 		
 		<action name="updateTestAction" class="board.test.action.UpdateTestAction">
 			<result type="chain">readTestAction</result>
-		</action>		
+		</action>
 
 		<!--테스트 게시판 삭제 액션. -->
 		<action name="deleteTestAction" class="board.test.action.DeleteTestAction">

@@ -16,7 +16,7 @@
 	</resultMap>
 
 	<!-- 공통으로 사용할 select 절 정의 -->
-	<sql id="select-all">
+	<sql id="select-all-test">
 		SELECT * FROM TEST_BOARD
 	</sql>
 
@@ -28,12 +28,12 @@
 
 	<!-- select 쿼리문 정의 -->
 	<select id="selectAll" resultMap="TestResult" parameterClass="int">
-		<include refid="select-all" />
+		<include refid="select-all-test" />
 		ORDER BY no DESC
 	</select>
 
 	<select id="selectOne" resultMap="TestResult" parameterClass="int">
-		<include refid="select-all" />
+		<include refid="select-all-test" />
 		<include refid="where-no" />
 	</select>
 
@@ -42,7 +42,7 @@
 	</select>
 
 	<select id="selectPassword" resultMap="TestResult">
-		<include refid="select-all" />
+		<include refid="select-all-test" />
 		<include refid="where-no" />
 		AND password = #password#
 	</select>
