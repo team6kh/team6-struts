@@ -4,17 +4,19 @@
 
 <struts>
 	<package name="team6-struts" extends="struts-default">
+		<!-- SqlMapClient 인터셉터... -->
 		<interceptors>
 			<interceptor name="conDao" class="board.test.action.ConDAOInterceptor"/>
-		</interceptors>		
+		</interceptors>
+		<!-- 로그인 액션. -->
 		<action name="loginForm" class="login.action.LoginAction" method="loginForm">
 			<result>/login/loginForm.jsp</result>
 		</action>
-		<action name="loginAction" class="login.action.LoginAction">			
-			<interceptor-ref name="conDao" />
+		<action name="loginAction" class="login.action.LoginAction">		
 			<interceptor-ref name="prepare" />
 			<interceptor-ref name="modelDriven" />
-			<interceptor-ref name="params" />
+			<interceptor-ref name="params" />				
+			<interceptor-ref name="conDao" />
 			<result name="error">/login/loginError.jsp</result>
 			<result>/login/loginSuccess.jsp</result>
 		</action>
@@ -26,7 +28,7 @@
 		</action>
 		
 		<!-- 테스트 게시판 쓰기 액션. -->
-		<action name="createTestForm" class="board.test.action.CreateTestAction" method="form">
+		<action name="createTestForm" class="board.test.action.CreateTestAction" method="createForm">
 			<result>/board/test/createTest.jsp</result>
 		</action>
 		
@@ -59,10 +61,14 @@
 		
 		<!-- 테스트 게시판 수정 액션. -->
 		<action name="updateTestForm" class="board.test.action.ReadTestAction">
+			<interceptor-ref name="params"/>
+			<interceptor-ref name="conDao"/>
 			<result type="chain">createTestForm</result>
 		</action>
 		
 		<action name="updateTestAction" class="board.test.action.UpdateTestAction">
+			<interceptor-ref name="params"/>
+			<interceptor-ref name="conDao"/>
 			<result type="chain">readTestAction</result>
 		</action>
 

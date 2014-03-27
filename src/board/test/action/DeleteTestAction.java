@@ -38,13 +38,13 @@ public class DeleteTestAction extends ActionSupport implements ConDAOAware {
 		resultClass = new TestDTO();
 		
 		// 해당 번호의 글을 가져온다.
-		resultClass = (TestDTO) sqlMapper.queryForObject("selectOne", getNo());
+		resultClass = (TestDTO) sqlMapper.queryForObject("Test.selectOne", getNo());
 
 		// 삭제할 항목 설정.
 		paramClass.setNo(getNo());
 				
 		// 삭제 쿼리 수행.
-		sqlMapper.update("deleteBoard", paramClass);
+		sqlMapper.update("Test.deleteBoard", paramClass);
 
 		return SUCCESS;
 	}

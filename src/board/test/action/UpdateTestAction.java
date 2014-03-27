@@ -48,10 +48,10 @@ public class UpdateTestAction extends ActionSupport implements ConDAOAware {
 		paramClass.setContent(getContent());
 
 		// 일단 항목만 수정한다.
-		sqlMapper.update("updateBoard", paramClass);		
+		sqlMapper.update("Test.updateBoard", paramClass);		
 
 		// 수정이 끝나면 view 페이지로 이동.
-		resultClass = (TestDTO) sqlMapper.queryForObject("selectOne", getNo());
+		resultClass = (TestDTO) sqlMapper.queryForObject("Test.selectOne", getNo());
 
 		return SUCCESS;
 	}

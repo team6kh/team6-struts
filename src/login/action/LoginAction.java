@@ -35,7 +35,7 @@ public class LoginAction implements Action, Preparable, ModelDriven, ConDAOAware
 		sqlMapper = conDao.getCon();
 		
 		// 현재 글의 비밀번호 가져오기.
-		resultClass = (UserDTO) sqlMapper.queryForObject("selectPasswordUser", userDto);
+		resultClass = (UserDTO) sqlMapper.queryForObject("User.selectPassword", userDto);
 
 		// 입력한 비밀번호가 틀리면 ERROR 리턴.
 		if (resultClass == null) {
@@ -69,7 +69,6 @@ public class LoginAction implements Action, Preparable, ModelDriven, ConDAOAware
 	}
 
 	public void setUserId(String userId) {
-		System.out.println("setUserId:"+userId);
 		this.userId = userId;
 	}
 

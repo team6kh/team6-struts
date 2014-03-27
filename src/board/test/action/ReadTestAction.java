@@ -40,10 +40,10 @@ public class ReadTestAction extends ActionSupport implements ConDAOAware {
 
 		// 해당 글의 조회수 +1.
 		paramClass.setNo(getNo());
-		sqlMapper.update("updateReadHit", paramClass);
+		sqlMapper.update("Test.updateReadHit", paramClass);
 
 		// 해당 번호의 글을 가져온다.
-		resultClass = (TestDTO) sqlMapper.queryForObject("selectOne", getNo());
+		resultClass = (TestDTO) sqlMapper.queryForObject("Test.selectOne", getNo());
 
 		return SUCCESS;
 	}
@@ -62,7 +62,7 @@ public class ReadTestAction extends ActionSupport implements ConDAOAware {
 		paramClass.setPassword(getPassword());
 
 		// 현재 글의 비밀번호 가져오기.
-		resultClass = (TestDTO) sqlMapper.queryForObject("selectPassword", paramClass);
+		resultClass = (TestDTO) sqlMapper.queryForObject("Test.selectPassword", paramClass);
 
 		// 입력한 비밀번호가 틀리면 ERROR 리턴.
 		if (resultClass == null)

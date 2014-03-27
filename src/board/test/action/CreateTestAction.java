@@ -34,7 +34,7 @@ public class CreateTestAction extends ActionSupport implements ConDAOAware {
 		this.conDao = conDao;
 	}
 
-	public String form() throws Exception {
+	public String createForm() throws Exception {
 		// 등록 폼.
 		return SUCCESS;
 	}
@@ -44,7 +44,7 @@ public class CreateTestAction extends ActionSupport implements ConDAOAware {
 		
 		sqlMapper = conDao.getCon();
 
-		//파라미터와 리절트 객체 생성.
+		// 파라미터와 리절트 객체 생성.
 		paramClass = new TestDTO();
 		resultClass = new TestDTO();
 
@@ -56,7 +56,7 @@ public class CreateTestAction extends ActionSupport implements ConDAOAware {
 		paramClass.setRegdate(today.getTime());
 
 		// 등록 쿼리 수행.
-		sqlMapper.insert("insertBoard", paramClass);
+		sqlMapper.insert("Test.insertBoard", paramClass);
 
 		return SUCCESS;
 	}

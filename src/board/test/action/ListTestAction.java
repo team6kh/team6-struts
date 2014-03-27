@@ -42,7 +42,7 @@ public class ListTestAction extends ActionSupport implements ConDAOAware {
 		sqlMapper = conDao.getCon();
 
 		// 모든 글을 가져와 list에 넣는다.
-		list = sqlMapper.queryForList("selectAll");
+		list = sqlMapper.queryForList("Test.selectAll");
 
 		totalCount = list.size(); // 전체 글 갯수를 구한다.
 		page = new PagingAction(urlName, currentPage, totalCount, blockCount, blockPage); // pagingAction 객체 생성.
