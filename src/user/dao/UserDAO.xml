@@ -29,7 +29,7 @@
 		ORDER BY user_name DESC
 	</select>
 	
-	<select id="selectOneUser" resultMap="TestResult" parameterClass="UserDTO">
+	<select id="selectOneUser" resultMap="UserResult" parameterClass="UserDTO">
 		<include refid="select-all-user" />
 		<include refid="where-user_id" />
 	</select>

@@ -6,8 +6,8 @@ public class UserDTO {
 	private String userId;
 	private String password;
 	private String userName;
-	private String regDate;
-	private Timestamp userLevel;
+	private Timestamp regDate;
+	private String userLevel;
 	
 	public String getUserId() {
 		return userId;
@@ -27,16 +27,16 @@ public class UserDTO {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public String getRegDate() {
+	public Timestamp getRegDate() {
 		return regDate;
 	}
-	public void setRegDate(String regDate) {
+	public void setRegDate(Timestamp regDate) {
 		this.regDate = regDate;
 	}
-	public Timestamp getUserLevel() {
+	public String getUserLevel() {
 		return userLevel;
 	}
-	public void setUserLevel(Timestamp userLevel) {
+	public void setUserLevel(String userLevel) {
 		this.userLevel = userLevel;
 	}
 }

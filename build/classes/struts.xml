@@ -9,7 +9,7 @@
 		</interceptors>		
 		<action name="loginForm" class="login.action.LoginAction" method="loginForm">
 			<result>/login/loginForm.jsp</result>
-		</action>	
+		</action>
 		<action name="loginAction" class="login.action.LoginAction">			
 			<interceptor-ref name="conDao" />
 			<interceptor-ref name="prepare" />

@@ -33,20 +33,27 @@ public class LoginAction implements Action, Preparable, ModelDriven, ConDAOAware
 	
 	public String execute() throws Exception {
 		sqlMapper = conDao.getCon();
-		// 비밀번호 입력값 파라미터 설정.
-		paramClass.setUserId(paramClass.getUserId());
-		paramClass.setPassword(paramClass.getPassword());
-
+		
 		// 현재 글의 비밀번호 가져오기.
-		resultClass = (UserDTO) sqlMapper.queryForObject("selectPasswordUser", paramClass);
+		resultClass = (UserDTO) sqlMapper.queryForObject("selectPasswordUser", userDto);
 
 		// 입력한 비밀번호가 틀리면 ERROR 리턴.
-		if (resultClass == null)
+		if (resultClass == null) {
+			System.out.print("error here");
 			return ERROR;
+		}
 
 		return SUCCESS;
 	}	
 	
+	public UserDTO getParamClass() {
+		return paramClass;
+	}
+
+	public void setParamClass(UserDTO paramClass) {
+		this.paramClass = paramClass;
+	}
+
 	// Preparable 인터페이스의 prepare
 	public void prepare() throws Exception {
 		userDto = new UserDTO();		
@@ -56,4 +63,22 @@ public class LoginAction implements Action, Preparable, ModelDriven, ConDAOAware
 	public Object getModel() {
 		return userDto;		
 	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		System.out.println("setUserId:"+userId);
+		this.userId = userId;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
 }
