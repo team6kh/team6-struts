@@ -4,10 +4,16 @@
 
 <struts>
 	<package name="team6-struts" extends="struts-default">
+	
 		<!-- SqlMapClient 인터셉터... -->
 		<interceptors>
 			<interceptor name="conDao" class="board.test.action.ConDAOInterceptor"/>
 		</interceptors>
+		
+		<!-- 헤더 액션. -->
+		<action name="headerAction" class="header.action.HeaderAction">
+			<result>/inc/header.jsp</result>
+		</action>
 		<!-- 로그인 액션. -->
 		<action name="loginForm" class="login.action.LoginAction" method="loginForm">
 			<result>/login/loginForm.jsp</result>
@@ -17,9 +23,21 @@
 			<interceptor-ref name="modelDriven" />
 			<interceptor-ref name="params" />				
 			<interceptor-ref name="conDao" />
+			<interceptor-ref name="servletConfig"/>
 			<result name="error">/login/loginError.jsp</result>
-			<result>/login/loginSuccess.jsp</result>
+			<result>/inc/loginSuccess.jsp</result>
 		</action>
+		
+		<!-- 홈 액션. -->
+		<action name="homeAction" class="home.action.HomeAction">
+			<result>/index.jsp</result>
+		</action>
+		
+		<!-- 레스토랑 게시판 리스트 액션. -->
+		<action name="listRestAction" class="board.rest.action.ListRestAction">
+			<result>/board/rest/listRest.jsp</result>
+		</action>
+		
 		<!-- 테스트 게시판 리스트 액션. -->
 		<action name="listTestAction" class="board.test.action.ListTestAction">
 			<interceptor-ref name="params"/>
@@ -77,7 +95,8 @@
 			<interceptor-ref name="params"/>
 			<interceptor-ref name="conDao"/>
 			<result type="chain">listTestAction</result>
-		</action>	
+		</action>
+			
 	</package>
 </struts>
 

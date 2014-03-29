@@ -1,5 +1,11 @@
 package login.action;
 
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.interceptor.ServletRequestAware;
+
 import user.dto.UserDTO;
 import board.test.action.ConDAO;
 import board.test.action.ConDAOAware;
@@ -9,7 +15,7 @@ import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.Preparable;
 
-public class LoginAction implements Action, Preparable, ModelDriven, ConDAOAware {
+public class LoginAction implements Action, Preparable, ModelDriven, ConDAOAware, ServletRequestAware {
 	
 	UserDTO userDto;
 	public static SqlMapClient sqlMapper;
@@ -25,13 +31,17 @@ public class LoginAction implements Action, Preparable, ModelDriven, ConDAOAware
 		this.conDao = conDao;
 	}
 	
+	HttpServletRequest request;
+	public String modelAndView = "testing modelAndView";
+	
 	// 폼
 	public String loginForm() throws Exception {
-
+		
 		return SUCCESS;
 	}
 	
 	public String execute() throws Exception {
+		System.out.println("modelAndView:" + modelAndView);
 		sqlMapper = conDao.getCon();
 		
 		// 현재 글의 비밀번호 가져오기.
@@ -43,6 +53,9 @@ public class LoginAction implements Action, Preparable, ModelDriven, ConDAOAware
 			return ERROR;
 		}
 
+		modelAndView = request.getRequestURI();
+		System.out.println("modelAndView:" + modelAndView);
+		
 		return SUCCESS;
 	}	
 	
@@ -78,6 +91,18 @@ public class LoginAction implements Action, Preparable, ModelDriven, ConDAOAware
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public String getModelAndView() {
+		return modelAndView;
+	}
+	
+	public void setModelAndView(String modelAndView) {
+		this.modelAndView = modelAndView;
+	}
+
+	public void setServletRequest(HttpServletRequest request) {
+		this.request = request;		
 	}
 	
 }
